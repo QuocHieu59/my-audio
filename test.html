@@ -1,0 +1,419 @@
+<!doctype html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>WEBSITE LỚP 12A3</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&family=Pacifico&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --blue: #1e4db7;
+        --pink: #e34c5f;
+        --gold: #ffd166;
+        --text: #fff;
+      }
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: "Montserrat", sans-serif;
+      }
+      body {
+        background: #f5f7fb;
+        color: #222;
+      }
+
+      /* HEADER */
+      header {
+        position: relative;
+        height: 320px;
+        color: white;
+        text-align: center;
+        overflow: hidden;
+      }
+      header img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        filter: blur(2px);
+        transform: scale(1.05);
+      }
+      header .overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 50, 0.45);
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        padding: 10px;
+      }
+      header h1 {
+        font-size: 36px;
+        color: var(--gold);
+        font-weight: 600;
+      }
+      header p.slogan {
+        margin-top: 10px;
+        font-size: 22px;
+        font-family: "Pacifico", cursive;
+      }
+
+      /* COUNTDOWN */
+      #countdown {
+        position: absolute;
+        top: 15px;
+        right: 20px;
+        background: rgba(255, 255, 255, 0.2);
+        padding: 6px 12px;
+        border-radius: 20px;
+        font-size: 14px;
+      }
+
+      /* MAIN GRID */
+      main {
+        padding: 40px 8%;
+      }
+      .grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 20px;
+      }
+      .card {
+        position: relative;
+        overflow: hidden;
+        border-radius: 16px;
+        height: 220px;
+        cursor: pointer;
+      }
+      .card img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 0.4s;
+      }
+      .card:hover img {
+        transform: scale(1.08);
+      }
+      .card .title {
+        position: absolute;
+        bottom: 0;
+        width: 100%;
+        padding: 12px 16px;
+        background: rgba(0, 0, 0, 0.5);
+        color: #fff;
+        font-weight: 600;
+        font-size: 18px;
+      }
+
+      /* FOOTER */
+      footer {
+        background: var(--pink);
+        color: white;
+        text-align: center;
+        padding: 20px;
+        margin-top: 30px;
+      }
+      footer .icons a {
+        color: white;
+        margin: 0 8px;
+        font-size: 20px;
+        text-decoration: none;
+      }
+      .page {
+        display: none;
+        animation: fade 0.4s ease;
+      }
+
+      .page.active {
+        display: block;
+      }
+
+      @keyframes fade {
+        from {
+          opacity: 0;
+          transform: translateY(10px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      /* MUSIC BUTTON */
+      #music-btn {
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        background: #fff;
+        border: none;
+        padding: 10px 14px;
+        border-radius: 50px;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        cursor: pointer;
+        font-weight: bold;
+      }
+
+      /* TOP NAVBAR */
+      .top-nav {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 60px;
+        background: #0000ff;
+        color: #fff;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 0 8%;
+        z-index: 1000;
+      }
+
+      .nav-logo {
+        font-size: 20px;
+        font-weight: 600;
+        color: var(--gold);
+      }
+
+      .nav-menu {
+        list-style: none;
+        display: flex;
+        gap: 24px;
+      }
+
+      .nav-menu li a {
+        color: #fff;
+        text-decoration: none;
+        font-weight: 500;
+        transition: color 0.3s;
+      }
+
+      .nav-menu li a:hover {
+        color: var(--gold);
+      }
+
+      /* đẩy nội dung xuống để không bị header che */
+      header {
+        margin-top: 60px;
+      }
+      .nav-menu li a.active {
+        color: var(--gold);
+        border-bottom: 2px solid var(--gold);
+        padding-bottom: 4px;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- HEADER -->
+    <header>
+      <img
+        src="https://scontent.fhan2-4.fna.fbcdn.net/v/t39.30808-6/625136295_750166494836917_7314945764437862917_n.jpg?_nc_cat=110&ccb=1-7&_nc_sid=7b2446&_nc_eui2=AeHEQUyOztbIJmGVNowCSnCGJMe-CuL0_Zckx74K4vT9l2B7DqhmHM3z5KGeCyrMepoZYKWeWqv_V_tzACimiSrR&_nc_ohc=wb5EMyzjdVIQ7kNvwH8uteg&_nc_oc=Admq3Lxxzlw91-uUmzNy-1LoP8DBywQUctZCqSI8thL3SngJB9yCWrQYdxAzbdgBIAaupftZTwhEkK3W84qYrLOM&_nc_zt=23&_nc_ht=scontent.fhan2-4.fna&_nc_gid=0FP3kk8Olj3fwjoju5ulRQ&oh=00_AfsXrGdIW0KlXvfboNOxvmzu7N9LiMtHiPT7IfNNGLJkbg&oe=69A64D65"
+        alt="Banner lớp"
+      />
+      <div class="overlay">
+        <h1>12A3 – Đoàn kết hôm nay, bứt phá ngày mai</h1>
+        <p class="slogan">"Học hết mình, chơi nhiệt tình"</p>
+      </div>
+      <div id="countdown">Chỉ còn ... ngày để bên nhau</div>
+    </header>
+    <!-- TOP NAVBAR -->
+    <nav class="top-nav">
+      <div class="nav-logo">12A3</div>
+      <ul class="nav-menu">
+        <li>
+          <a
+            href="#"
+            onclick="
+              showPage('portrait');
+              return false;
+            "
+            >Chân dung A3</a
+          >
+        </li>
+        <li>
+          <a
+            href="#"
+            onclick="
+              showPage('album');
+              return false;
+            "
+            >Album Khoảnh Khắc</a
+          >
+        </li>
+        <li>
+          <a
+            href="#"
+            onclick="
+              showPage('success');
+              return false;
+            "
+            >Bảng vàng Thành tích</a
+          >
+        </li>
+        <li>
+          <a
+            href="#"
+            onclick="
+              showPage('blog');
+              return false;
+            "
+            >Góc Tâm Sự</a
+          >
+        </li>
+      </ul>
+    </nav>
+    <!-- MAIN CONTENT -->
+    <main>
+      <section id="home" class="page active">
+        <div class="grid">
+          <div class="card" onclick="showPage('portrait')">
+            <img
+              src="https://scontent.fhan2-4.fna.fbcdn.net/v/t39.30808-6/625124058_750941151426118_3916854980745063990_n.jpg?stp=dst-jpg_p526x296_tt6&_nc_cat=110&ccb=1-7&_nc_sid=7b2446&_nc_eui2=AeEKAYv6QurQ56vHxobiEOhVyVIsiJ3UOEvJUiyIndQ4S8rKs6MO5tpnoZYiRzATlUeIBCRBDNvngd_gZC92W-Sc&_nc_ohc=ORHBe0SbIBoQ7kNvwH1cVJY&_nc_oc=Adm8s-DU6PRvDJzqJm7Jfigs0guFKUGPjcMbACdCdbwOxbyMUwppQ2ohcNsgEHV1_CTD5oBQqU4goiCO8MYPAmUL&_nc_zt=23&_nc_ht=scontent.fhan2-4.fna&_nc_gid=VCO3X8BFOsIuBYJAyrumFw&oh=00_AfsgfxEkdn9Ho8I2giLlIoIs94HL2NqYqBlcIJCOTCEKuQ&oe=69A64BCD"
+            />
+            <div class="title">Chân dung A3</div>
+          </div>
+
+          <div class="card" onclick="showPage('album')">
+            <img
+              src="https://scontent.fhan2-5.fna.fbcdn.net/v/t39.30808-6/625074517_750162038170696_3871186448615891933_n.jpg?_nc_cat=107&ccb=1-7&_nc_sid=7b2446&_nc_eui2=AeHskNWhjOcubj0I9LtaXaN2ymoyEHGWNG7KajIQcZY0bmvMAM0PJKP5v61vPX_W4EHTAahTxPiS7zZjU_jlcjx2&_nc_ohc=8R-AHBpjEnUQ7kNvwGnu0bM&_nc_oc=AdkSLt-BwNQ_f0s9a9y3LVGNbGoEq1XoR8ABM77p555g4_qQlDS8VKd8AOeftg76qhHH_Qox3G8T38cql1eG5L1R&_nc_zt=23&_nc_ht=scontent.fhan2-5.fna&_nc_gid=bb44u-RRsarV_5WAzVimUw&oh=00_AfvEkGLNe3DF9Ti-U2eR3lC34sXh-UT4tULiNOlxgCtWdA&oe=69A646DA"
+            />
+            <div class="title">Album Khoảnh Khắc</div>
+          </div>
+
+          <div class="card" onclick="showPage('success')">
+            <img
+              src="https://scontent.fhan20-1.fna.fbcdn.net/v/t39.30808-6/625763987_750162054837361_3525442771332771762_n.jpg?_nc_cat=109&ccb=1-7&_nc_sid=7b2446&_nc_eui2=AeEp_RFY74aGGSmlEQeSBhc3MBs5LZcd0nIwGzktlx3Schn2p8S3TihXdplw_o4QEWs0Tpd1yo11cIiL2pd8UBFT&_nc_ohc=kNX-G_IaEdYQ7kNvwGemr4g&_nc_oc=AdnphAyGtq9JhwVL-28fthXVtYBTUVTKAfxCottjv_XQKtDSHIy_eNAo1O3O5qnyTGPCq6-wnp9YyyztjSlJC7tR&_nc_zt=23&_nc_ht=scontent.fhan20-1.fna&_nc_gid=c_55NCp-xMCREI-7_Hx5bA&oh=00_AfvtqSuj1TlhNCZi_vg5jFkY-6_8wfUJkD1YdBJ2RD9Ywg&oe=69A63C83"
+            />
+            <div class="title">Bảng vàng Thành tích</div>
+          </div>
+
+          <div class="card" onclick="showPage('blog')">
+            <img
+              src="https://scontent.fhan2-5.fna.fbcdn.net/v/t39.30808-6/628369623_755381014315465_5815429325246098162_n.jpg?stp=dst-jpg_s720x720_tt6&_nc_cat=104&ccb=1-7&_nc_sid=7b2446&_nc_eui2=AeG6Y-v0VMRNoQ7iwgACS3yVAs2eAMuOYCECzZ4Ay45gIbNka_SuLJwbmm0oJkh2ASuthQ6qLASFlYO7NgtQhehl&_nc_ohc=GVi7Rj5RB7gQ7kNvwGj71mT&_nc_oc=AdkJNQZ0INv0nHyH4uY0kYj5z42jE7RMlIQBhVbS6qQvTVKLkNVfG-ZLGFC_BV2CeBejZVRmDb_1Ck90N0l4IUv_&_nc_zt=23&_nc_ht=scontent.fhan2-5.fna&_nc_gid=EYFa2UAzLxu4CJs7OaHT4Q&oh=00_Afu6N9dRVjp7hZELNHYExLh2-hI4pOOgcoV_VV7l74Lt4Q&oe=69A6325C"
+            />
+            <div class="title">Góc Tâm Sự / Blog</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- TRANG PORTRAIT -->
+      <section id="portrait" class="page">
+        <button onclick="showPage('home')">⬅ Quay lại</button>
+        <h2>Chân dung A3</h2>
+
+        <img
+          src="https://scontent.fhan2-4.fna.fbcdn.net/v/t39.30808-6/625124058_750941151426118_3916854980745063990_n.jpg?stp=dst-jpg_p526x296_tt6&_nc_cat=110&ccb=1-7&_nc_sid=7b2446&_nc_eui2=AeEKAYv6QurQ56vHxobiEOhVyVIsiJ3UOEvJUiyIndQ4S8rKs6MO5tpnoZYiRzATlUeIBCRBDNvngd_gZC92W-Sc&_nc_ohc=ORHBe0SbIBoQ7kNvwH1cVJY&_nc_oc=Adm8s-DU6PRvDJzqJm7Jfigs0guFKUGPjcMbACdCdbwOxbyMUwppQ2ohcNsgEHV1_CTD5oBQqU4goiCO8MYPAmUL&_nc_zt=23&_nc_ht=scontent.fhan2-4.fna&_nc_gid=VCO3X8BFOsIuBYJAyrumFw&oh=00_AfsgfxEkdn9Ho8I2giLlIoIs94HL2NqYqBlcIJCOTCEKuQ&oe=69A64BCD"
+        />
+      </section>
+
+      <!-- TRANG ALBUM -->
+      <section id="album" class="page">
+        <button onclick="showPage('home')">⬅ Quay lại</button>
+        <h2>Album Khoảnh Khắc</h2>
+        <img
+          src="https://scontent.fhan2-5.fna.fbcdn.net/v/t39.30808-6/625074517_750162038170696_3871186448615891933_n.jpg?_nc_cat=107&ccb=1-7&_nc_sid=7b2446&_nc_eui2=AeHskNWhjOcubj0I9LtaXaN2ymoyEHGWNG7KajIQcZY0bmvMAM0PJKP5v61vPX_W4EHTAahTxPiS7zZjU_jlcjx2&_nc_ohc=8R-AHBpjEnUQ7kNvwGnu0bM&_nc_oc=AdkSLt-BwNQ_f0s9a9y3LVGNbGoEq1XoR8ABM77p555g4_qQlDS8VKd8AOeftg76qhHH_Qox3G8T38cql1eG5L1R&_nc_zt=23&_nc_ht=scontent.fhan2-5.fna&_nc_gid=bb44u-RRsarV_5WAzVimUw&oh=00_AfvEkGLNe3DF9Ti-U2eR3lC34sXh-UT4tULiNOlxgCtWdA&oe=69A646DA"
+        />
+      </section>
+
+      <!-- TRANG SUCCESS -->
+      <section id="success" class="page">
+        <button onclick="showPage('home')">⬅ Quay lại</button>
+        <h2>Bảng vàng Thành tích</h2>
+        <img
+          src="https://scontent.fhan20-1.fna.fbcdn.net/v/t39.30808-6/625763987_750162054837361_3525442771332771762_n.jpg?_nc_cat=109&ccb=1-7&_nc_sid=7b2446&_nc_eui2=AeEp_RFY74aGGSmlEQeSBhc3MBs5LZcd0nIwGzktlx3Schn2p8S3TihXdplw_o4QEWs0Tpd1yo11cIiL2pd8UBFT&_nc_ohc=kNX-G_IaEdYQ7kNvwGemr4g&_nc_oc=AdnphAyGtq9JhwVL-28fthXVtYBTUVTKAfxCottjv_XQKtDSHIy_eNAo1O3O5qnyTGPCq6-wnp9YyyztjSlJC7tR&_nc_zt=23&_nc_ht=scontent.fhan20-1.fna&_nc_gid=c_55NCp-xMCREI-7_Hx5bA&oh=00_AfvtqSuj1TlhNCZi_vg5jFkY-6_8wfUJkD1YdBJ2RD9Ywg&oe=69A63C83"
+        />
+      </section>
+
+      <!-- TRANG BLOG -->
+      <section id="blog" class="page">
+        <button onclick="showPage('home')">⬅ Quay lại</button>
+        <h2>Góc Tâm Sự</h2>
+        <img
+          src="https://scontent.fhan2-5.fna.fbcdn.net/v/t39.30808-6/628369623_755381014315465_5815429325246098162_n.jpg?stp=dst-jpg_s720x720_tt6&_nc_cat=104&ccb=1-7&_nc_sid=7b2446&_nc_eui2=AeG6Y-v0VMRNoQ7iwgACS3yVAs2eAMuOYCECzZ4Ay45gIbNka_SuLJwbmm0oJkh2ASuthQ6qLASFlYO7NgtQhehl&_nc_ohc=GVi7Rj5RB7gQ7kNvwGj71mT&_nc_oc=AdkJNQZ0INv0nHyH4uY0kYj5z42jE7RMlIQBhVbS6qQvTVKLkNVfG-ZLGFC_BV2CeBejZVRmDb_1Ck90N0l4IUv_&_nc_zt=23&_nc_ht=scontent.fhan2-5.fna&_nc_gid=EYFa2UAzLxu4CJs7OaHT4Q&oh=00_Afu6N9dRVjp7hZELNHYExLh2-hI4pOOgcoV_VV7l74Lt4Q&oe=69A6325C"
+        />
+      </section>
+    </main>
+
+    <!-- FOOTER -->
+    <footer>
+      <p>Trường THPT Lương Thế Vinh • Website 2026</p>
+      <div class="icons">
+        <a href="https://www.facebook.com/share/17BXfqWA4k/?mibextid=wwXIfr"
+          >Facebook</a
+        >
+        <a
+          href="https://www.instagram.com/mieha11?igsh=M3c4eWdld3V5ajc4&utm_source=qr"
+          >Instagram</a
+        >
+        <a href="https://www.tiktok.com/@hamy10.01?_r=1&_t=ZS-93ZbgBSuulp"
+          >TikTok</a
+        >
+      </div>
+      <p style="margin-top: 8px">Made with ❤️ by 12A3 Students</p>
+    </footer>
+
+    <!-- MUSIC -->
+    <button id="music-btn">♪ Nhạc</button>
+    <audio id="bg-music" loop>
+      <source
+        src="https://drive.google.com/file/d/1biQCeH0GPC2fPtpZoU837IkXtjwxzitX/view?usp=sharing"
+        type="audio/mpeg"
+      />
+    </audio>
+
+    <script>
+      // MUSIC TOGGLE
+      const btn = document.getElementById("music-btn");
+      const music = document.getElementById("bg-music");
+      let playing = false;
+      btn.onclick = () => {
+        playing ? music.pause() : music.play();
+        playing = !playing;
+        btn.innerText = playing ? "❚❚ Tắt" : "♪ Nhạc";
+      };
+
+      // COUNTDOWN (tuỳ chỉnh ngày)
+      const targetDate = new Date("2026-05-25");
+      const countdown = document.getElementById("countdown");
+
+      function updateCountdown() {
+        const now = new Date();
+        const diff = targetDate - now;
+        const days = Math.ceil(diff / (1000 * 60 * 60 * 24));
+        countdown.innerText = `Chỉ còn ${days} ngày để bên nhau`;
+      }
+      updateCountdown();
+      setInterval(updateCountdown, 1000 * 60 * 60);
+      function showPage(id) {
+        // 1. Ẩn tất cả các page
+        document.querySelectorAll(".page").forEach((page) => {
+          page.classList.remove("active");
+        });
+
+        // 2. Hiện page được chọn
+        document.getElementById(id).classList.add("active");
+
+        // 3. Xoá active ở tất cả menu
+        document.querySelectorAll(".nav-menu a").forEach((a) => {
+          a.classList.remove("active");
+        });
+
+        // 4. Gán active cho menu tương ứng
+        const activeLink = document.querySelector(
+          `.nav-menu a[onclick*="${id}"]`,
+        );
+        if (activeLink) activeLink.classList.add("active");
+
+        // 5. Cuộn lên đầu trang
+        window.scrollTo(0, 0);
+      }
+    </script>
+  </body>
+</html>
